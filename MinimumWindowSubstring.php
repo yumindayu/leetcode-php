@@ -32,67 +32,43 @@ class Solution {
     
      */
    
-    function minWindow($s, $t) {
-      if (strlen($s) < strlen($t)) return "";
-      $map = [];
-      for ($i = 0; $i < strlen($t); $i++) {
-        if (isset($map[$t[$i]])) {
-          $map[$t[$i]]++;
-        } else {
-          $map[$t[$i]] = 1;
-        }
+  function minWindow($s, $t) {
+    if (strlen($s) < strlen($t)) return "";
+    $map = [];
+    for ($i = 0; $i < strlen($t); $i++) {
+      if (isset($map[$t[$i]])) {
+        $map[$t[$i]]++;
+      } else {
+        $map[$t[$i]] = 1;
       }
-      // {A:1,B:1,C:1}
-      $count = 0; //当前已经找到多少个字符
-      $left = 0;
-      $min = PHP_INT_MAX;
-      for ($right = 0; $right < strlen($s); $right++) {
-        if (isset($map[$s[$right]])) {
-          if ($map[$s[$right]] > 0) {
-            $count++;
-          }
-          $map[$s[$right]]--;
-        }
-        while ($count == strlen($t)) {
-          if ($right - $left < $min) {
-            $min = $right - $left;
-            $head = $left;
-            $end = $right;
-          }
-          if (isset($map[$s[$left]])) {
-            if ($map[$s[$left]] >= 0) {
-              $count--;
-            }
-            $map[$s[$left]]++;
-          }
-          $left++;
-        }
-      }
-      if ($min == PHP_INT_MAX) return "";
-      return substr($s, $head, $end - $head + 1);
     }
+    // {A:1,B:1,C:1}
+    $count = 0; //当前已经找到多少个字符
+    $left = 0;
+    $min = PHP_INT_MAX;
+    for ($right = 0; $right < strlen($s); $right++) {
+      if (isset($map[$s[$right]])) {
+        if ($map[$s[$right]] > 0) {
+          $count++;
+        }
+        $map[$s[$right]]--;
+      }
+      while ($count == strlen($t)) {
+        if ($right - $left < $min) {
+          $min = $right - $left;
+          $head = $left;
+          $end = $right;
+        }
+        if (isset($map[$s[$left]])) {
+          if ($map[$s[$left]] >= 0) {
+            $count--;
+          }
+          $map[$s[$left]]++;
+        }
+        $left++;
+      }
+    }
+    if ($min == PHP_INT_MAX) return "";
+    return substr($s, $head, $end - $head + 1);
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

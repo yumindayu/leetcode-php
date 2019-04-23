@@ -20,49 +20,36 @@
 
 class Solution {
 
-    /**
-     * @param Interval[] $intervals
-     * @return Interval[]
-     */
-    function merge($intervals) {
-      $ret = [];
-      if (empty($intervals)) return $ret;
-      $intervals = $this->array_sort($intervals);
-      $start = $intervals[0]->start;
-      $end = $intervals[0]->end;
-      array_shift($intervals);
-      foreach ($intervals as $interval) {
-        if ($interval->start <= $end) {
-          $end = max($end, $interval->end);
-        } else {
-          array_push($ret, new Interval($start, $end));
-          $start = $interval->start;
-          $end = $interval->end;
-        }
+  /**
+   * @param Interval[] $intervals
+   * @return Interval[]
+   */
+  function merge($intervals) {
+    $ret = [];
+    if (empty($intervals)) return $ret;
+    $intervals = $this->array_sort($intervals);
+    $start = $intervals[0]->start;
+    $end = $intervals[0]->end;
+    array_shift($intervals);
+    foreach ($intervals as $interval) {
+      if ($interval->start <= $end) {
+        $end = max($end, $interval->end);
+      } else {
+        array_push($ret, new Interval($start, $end));
+        $start = $interval->start;
+        $end = $interval->end;
       }
-      array_push($ret, new Interval($start, $end));
-      return $ret;
     }
+    array_push($ret, new Interval($start, $end));
+    return $ret;
+  }
 
-    function array_sort($intervals) {
-      $startArray = [];
-      foreach ($intervals as $interval) {
-        $startArray[] = $interval->start;
-      }
-      array_multisort($startArray, SORT_ASC, $intervals);
-      return $intervals;
+  function array_sort($intervals) {
+    $startArray = [];
+    foreach ($intervals as $interval) {
+      $startArray[] = $interval->start;
     }
+    array_multisort($startArray, SORT_ASC, $intervals);
+    return $intervals;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

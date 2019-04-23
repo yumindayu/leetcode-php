@@ -15,45 +15,30 @@
  */
 class Solution {
 
-    /**
-     * @param Interval[] $intervals
-     * @param Interval $newInterval
-     * @return Interval[]
-     */
-    function insert($intervals, $newInterval) {
-      $ret = [];
-      $start = $newInterval->start;
-      $end = $newInterval->end;
-      foreach ($intervals as $interval) {
-        if ($interval->start > $end) {
-          array_push($ret, new Interval($start, $end));
-          $start = $interval->start;
-          $end = $interval->end;
-        }
-
-        if ($interval->start > $end || $interval->end < $start) {
-          array_push($ret, $interval);
-        } else {
-          $start = min($start, $interval->start);
-          $end = max($end, $interval->end);
-        }
+  /**
+   * @param Interval[] $intervals
+   * @param Interval $newInterval
+   * @return Interval[]
+   */
+  function insert($intervals, $newInterval) {
+    $ret = [];
+    $start = $newInterval->start;
+    $end = $newInterval->end;
+    foreach ($intervals as $interval) {
+      if ($interval->start > $end) {
+        array_push($ret, new Interval($start, $end));
+        $start = $interval->start;
+        $end = $interval->end;
       }
-      array_push($ret, new Interval($start, $end));
-      return $ret;
+
+      if ($interval->start > $end || $interval->end < $start) {
+        array_push($ret, $interval);
+      } else {
+        $start = min($start, $interval->start);
+        $end = max($end, $interval->end);
+      }
     }
+    array_push($ret, new Interval($start, $end));
+    return $ret;
+  }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
