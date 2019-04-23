@@ -21,23 +21,23 @@ class Solution {
   function setZeroes(&$matrix) {
     $m = count($matrix);
     $n = count($matrix[0]);
-    $first_row = false;
+
+    $firstRow = false;
     for ($i = 0; $i < $n; $i++) {
       if ($matrix[0][$i] == 0) {
-        $first_row = true;
-        break;
+        $firstRow = true;
       }
     }
-    $first_col = false;
+
+    $firstCol = false;
     for ($i = 0; $i < $m; $i++) {
       if ($matrix[$i][0] == 0) {
-        $first_col = true;
-        break;
+        $firstCol = true;
       }
     }
 
     for ($i = 1; $i < $m; $i++) {
-      for ($j = 1; $i < $n; $j++) {
+      for ($j = 1; $j < $n; $j++) {
         if ($matrix[$i][$j] == 0) {
           $matrix[$i][0] = 0;
           $matrix[0][$j] = 0;
@@ -52,7 +52,7 @@ class Solution {
         }
       }
     }
-
+    
     for ($j = 1; $j < $m; $j++) {
       if ($matrix[$j][0] == 0) {
         for ($i = 0; $i < $n; $i++) {
@@ -60,14 +60,14 @@ class Solution {
         }
       }
     }
-
-    if ($first_row) {
+    
+    if ($firstRow) {
       for ($i = 0; $i < $n; $i++) {
         $matrix[0][$i] = 0;
       }
     }
-
-    if ($first_col) {
+    
+    if ($firstCol) {
       for ($i = 0; $i < $m; $i++) {
         $matrix[$i][0] = 0;
       }

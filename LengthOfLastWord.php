@@ -9,9 +9,6 @@ class Solution {
    输出: 5
    */
   function lengthOfLastWord($s) {
-    // $s = trim($s);
-    // $array = explode(" ", $s);
-    // return strlen($array[count($array) - 1]);
     $s = rtrim($s);
     $len = 0;
     for ($i = strlen($s) - 1; $i >= 0; $i--) {

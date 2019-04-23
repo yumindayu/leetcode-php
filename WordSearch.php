@@ -18,25 +18,27 @@ class Solution {
   function exist($board, $word) {
     for ($i = 0; $i < count($board); $i++) {
       for ($j = 0; $j < count($board[0]); $j++) {
-        $res = $this->do($board, $i, $j, $word, 0);
-        if ($res) {
-          return true;
-        }
+        $res = $this->helper($board, $i, $j, $word, 0);
+        if ($res) return true;
       }
     }
     return false;
   }
 
-  function do($board, $i, $j, $word, $start) {
+  function helper($board, $i, $j, $word, $start) {
     if ($start >= strlen($word)) {
       return true;
     }
-    if ($board[$i][$j] != $word[$start] || $i < 0 || $i >= count($board) || $j < 0 || $j >= count($board[0])) {
+    if ($i < 0 || $i >= count($board) || $j < 0 || $j >= count($board[0]) || $board[$i][$j] != $word[$start]) {
       return false;
     }
     $c = $word[$start];
     $board[$i][$j] = "#";
-    $res = ($this->do($board, $i + 1, $j, $word, $start + 1) || $this->do($board, $i - 1, $j, $word, $start + 1) || $this->do($board, $i, $j + 1, $word, $start + 1) || $this->do($board, $i, $j - 1, $word, $start + 1));
+    $res =  ($this->helper($board, $i + 1, $j, $word, $start + 1) ||
+      $this->helper($board, $i - 1, $j, $word, $start + 1) ||
+      $this->helper($board, $i, $j + 1, $word, $start + 1) ||
+      $this->helper($board, $i, $j - 1, $word, $start + 1)
+    );
     $board[$i][$j] = $c;
     return $res;
   }

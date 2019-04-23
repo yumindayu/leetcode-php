@@ -34,7 +34,7 @@ class Solution {
         }
         $ele = array_pop($stack);
         if ($data[$s[$i]] != $ele) {
-          return fasle;
+          return false;
         }
       } else {
         array_push($stack, $s[$i]);
@@ -60,7 +60,7 @@ class Solution {
         }
         $ele = $stack->pop();
         if ($data[$s[$i]] != $ele) {
-          return fasle;
+          return false;
         }
       } else {
         $stack->push($s[$i]);

@@ -18,7 +18,7 @@ class Solution {
       $left = $i + 1;
       $right = count($nums) - 1;
       while ($left < $right) {
-        $sum = $nums[$i] + $num[$left] + $nums[$right];
+        $sum = $nums[$i] + $nums[$left] + $nums[$right];
         if ($sum > $target) {
           $right--;
         } else {

@@ -13,7 +13,7 @@ class Solution {
   function findSubstring($s, $words) {
     $map = [];
     $ret = [];
-    if (!$s || $!$words) return $ret;
+    if (!$s || !$words) return $ret;
     $words_count = count($words);
     $words_length = strlen($words[0]);
 

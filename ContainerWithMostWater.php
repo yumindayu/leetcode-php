@@ -14,7 +14,7 @@ class Solution {
     $right = count($height) - 1;
     $max_area = 0;
     while ($left < $right) {
-      $max_area = max($max_area, ($right - $left) * $min($height[$left], $height[$right]));
+      $max_area = max($max_area, ($right - $left) * min($height[$left], $height[$right]));
       if ($height[$left] < $height[$right]) {
         $left++;
       } else {

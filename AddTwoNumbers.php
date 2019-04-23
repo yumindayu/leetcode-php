@@ -32,7 +32,7 @@ class Solution {
 
       $val = ($x + $y + $add) % 10;
 
-      $add = ($x + $y + $add ) / 10;
+      $add = floor(($x + $y + $add ) / 10);
 
       $new = new ListNode($val);
       $cur->next = $new;

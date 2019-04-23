@@ -24,7 +24,7 @@ class Solution {
   }
 
   function dfs($array, $candidates, $target, $start) {
-    if ($target < 0); return;
+    if ($target < 0) return;
     if ($target == 0) {
       array_push($this->res, $array);
       return;

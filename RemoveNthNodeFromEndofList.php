@@ -8,6 +8,11 @@
  * }
  */
 class Solution {
+  /**
+   * @param ListNode $head
+   * @param Integer $n
+   * @return ListNode
+   */
   function removeNthFromEnd($head, $n) {
     $dummy = new ListNode(0);
     $dummy->next = $head;

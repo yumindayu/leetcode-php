@@ -19,20 +19,20 @@ class Solution {
   public $list = [];
   
   function generateParenthesis($n) {
-     $this->_gen(0, 0, $n, "");
+     $this->gen(0, 0, $n, "");
      return $this->list;
   }
 
-  private function _gen($left, $right, $num, $result) {
+  private function gen($left, $right, $num, $result) {
     if ($left == $num && $right == $num) {
       array_push($this->list, $result);
       return;
     }
     if ($left < $num) {
-      $this->_gen($left + 1, $right, $num, $result . "(");
+      $this->gen($left + 1, $right, $num, $result . "(");
     }
     if ($right < $num && $left > $right) {
-      $this->_gen($left, $right + 1, $num, $result . ")");
+      $this->gen($left, $right + 1, $num, $result . ")");
     }
   }
 }

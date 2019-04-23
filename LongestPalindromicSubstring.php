@@ -63,7 +63,7 @@ class Solution {
     $res = $s[0];
     $max = 0;
     if ($s[0] == $s[1]) {
-      $res = substr($s, 0, 1);
+      $res = substr($s, 0, 2);
     }
 
     for ($j = 2; $j < strlen($s); $j++) {
