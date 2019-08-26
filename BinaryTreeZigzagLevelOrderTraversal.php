@@ -21,31 +21,37 @@ class Solution {
     /  \
    15   7
 
-  [
-    [3],
-    [9,20],
-    [15,7]
-  ]
+   [
+      [3],
+      [20,9],
+      [15,7]
+   ]
+
+
    */
-  function levelOrder($root) {
+  function zigzagLevelOrder($root) {
     $res = [];
     if (!$root) return $res;
     $queue = [];
     array_push($queue, $root);
     $level = 0;
     while (!empty($queue)) {
+      $list = [];
       foreach ($queue as $r) {
+        if ($level % 2 == 0) {
+          array_push($list, $r->val);
+        } else {
+          array_unshift($list, $r->val);
+        }
         if ($r->left != null) array_push($queue, $r->left);
         if ($r->right != null) array_push($queue, $r->right);
-        $res[$level][] = $r->val;
         array_shift($queue);
       }
+      array_push($res, $list);
       $level++;
     }
     return $res;
   }
 }
-
-
 
 
