@@ -13,6 +13,7 @@ class Solution {
   /**
    * @param Integer[] $preorder
    * @param Integer[] $inorder
+   * @github https://github.com/yumindayu/leetcode-php
    * @return TreeNode
 
     1
