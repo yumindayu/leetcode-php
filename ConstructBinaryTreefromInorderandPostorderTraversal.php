@@ -33,8 +33,31 @@ postOrder [7,4,2,5,8,6,3,1]
 
     @github https://github.com/yumindayu/leetcode-php
   */
-  function buildTree($inorder, $postorder) {
-    
+  function buildTree($preorder, $inorder) {
+    if (!$preorder) {
+      return null;
+    }
+    $x = array_shift($preorder);
+    $node = new TreeNode($x);
+    $key = array_search($x, $inorder);
+
+    $node->left = $this->buildTree(array_slice($preorder, 0, $key), array_slice($inorder, 0, $key));
+    $node->right = $this->buildTree(array_slice($preorder, $key), array_slice($inorder, $key + 1));
+
+    return $node;
+  }
+
+  function buildTree2($inorder, $postOrder) {
+    if (!$postOrder) {
+      return null;
+    }
+    $x = array_pop($postOrder);
+    $node = new TreeNode($x);
+    $key = array_search($x, $inorder);
+
+    $node->left = $this->buildTree2(array_slice($inorder, 0, $key), array_slice($postOrder, 0, $key));
+    $node->right = $this->buildTree2(array_slice($inorder, $key + 1), array_slice($postOrder, $key));
+    return $node;
   }
 }
 
