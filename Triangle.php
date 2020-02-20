@@ -27,7 +27,7 @@ class Solution {
       $dp[count($triangle) - 1][$i] = $array[$i];
     }
     for ($i = count($triangle) - 2; $i >= 0; $i--) {
-      for ($j = 0; $j < count($triangle[$i]); $i++) {
+      for ($j = 0; $j < count($triangle[$i]); $j++) {
         $dp[$i][$j] = min($dp[$i + 1][$j], $dp[$i + 1][$j + 1]) + $triangle[$i][$j];
       }
     }
@@ -39,7 +39,7 @@ class Solution {
     for ($i = count($triangle) - 2; $i >= 0; $i--) { 
       $current = [];
       for ($j = 0; $j < count($triangle[$i]); $i++) {
-        array_push($current, min($dp[$i + 1][$j], $dp[$i + 1][$j + 1]) + $triangle[$i][$j]);
+        array_push($current, min($dp[$j], $dp[$j + 1]) + $triangle[$i][$j]);
       }
       $pre = $current;
     }
