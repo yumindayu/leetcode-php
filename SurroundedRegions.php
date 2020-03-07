@@ -12,9 +12,11 @@ class Solution {
     ["X","X","O","X"],
     ["X","O","X","X"]
    ]
+
+
    */
   public $root = [];
-  
+
   function solve(&$board) {
     $m = count($board);
     $n = count($board[0]);
@@ -27,6 +29,40 @@ class Solution {
         }
       }
     }
+
+    for ($i = 0; $i < $m; $i++) {
+      for ($j = 0; $j < $n; $j++) {
+        if ($board[$i][$j] == "O") {
+          if ($i == 0 || $i == $m - 1 || $j == 0 || $j == $n - 1) {
+            $this->union($i * $n + $j, $m * $n + 1);
+          } else {
+            //上下左右合并
+            if ($board[$i - 1][$j] == 'O') {  //上
+              $this->union(($i - 1) * $n + $j, $i * $n + $j);
+            }
+            if ($board[$i + 1][$j] == 'O') {
+              $this->union(($i + 1) * $n + $j, $i * $n + $j);
+            }
+            if ($board[$i][$j - 1] == 'O') {
+              $this->union($i * $n + $j - 1, $i * $n + $j);
+            }
+            if ($board[$i][$j + 1] == 'O') {
+              $this->union($i * $n + $j + 1, $i * $n + $j);
+            }
+          }
+        }
+      }
+    }
+
+    for ($i = 0; $i < $m; $i++) {
+      for ($j = 0; $j < $n; $j++) {
+        if ($board[$i][$j] == 'O' && $this->find($i * $n + $j) != $m * $n + 1) {
+          $board[$i][$j] = 'X';
+        }
+      }
+    }
+
+
   }
 
   function union($p, $q) {
