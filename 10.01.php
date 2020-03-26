@@ -16,10 +16,7 @@ class Solution
         $index = $m + $n - 1;
         while ($j >= 0) {
             //$A[$index--] = ($i < 0 || $B[$j] >= $A[$i]) ? $B[$j--] : $A[$i--];
-            if ($i < 0) {
-                $A[$index] = $B[$j];
-                $j--;
-            } elseif ($A[$i] < $B[$j]) {
+            if ($i < 0 || $A[$i] < $B[$j]) {
                 $A[$index] = $B[$j];
                 $j--;
             } else {
