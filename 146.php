@@ -49,12 +49,12 @@ class LRUCache
         // have reached the limit, remove the least recently used
         if (count($this->cache) >= $this->capacity) {
             $toRemove = $this->usedList->removeTail();
-            unset($this->cache[$toRemove]);
+            unset($this->cache[$toRemove->key]);
         }
 
         // Create a new node and move to the top of useage list
         $node = new Node($key, $value);
-        $this->usedList->moveToHead($node);
+        $this->usedList->addNode($node);
         $this->cache[$key] = $node;
     }
 }
@@ -78,43 +78,54 @@ class doublyLinkedList
     protected $head;
     protected $tail;
 
-    public function moveToHead(Node $node)
+    public function __construct()
     {
-        if ($this->head === $node) {
-            return;
-        }
+        $this->head       = new Node(0, 0);
+        $this->head->prev = null;
 
+        $this->tail       = new Node(0, 0);
+        $this->tail->next = null;
+
+        $this->head->next = $this->tail;
+        $this->tail->prev = $this->head;
+
+    }
+    public function removeNode(Node $node)
+    {
         $next = $node->next;
         $prev = $node->prev;
 
-        if ($node == $this->tail) {
-            $this->tail = $prev;
-        } else {
-            $prev->next = $next;
-            $next->prev = $prev;
-        }
-
-        if ($this->head) {
-            $node->next       = $this->head;
-            $node->next->prev = $node;
-        }
-
-        if (!$this->tail) {
-            $this->tail = $node;
-        }
-
-        $this->head = $node;
+        $prev->next = $next;
+        $next->prev = $prev;
     }
 
-    protected function updateTail()
+    public function addNode($node)
     {
-        $this->tail = $this->tail->prev;
+        $node->prev = $this->head;
+        $node->next = $this->head->next;
+
+        $this->head->next->prev = $node;
+        $this->head->next       = $node;
+
+    }
+
+    public function moveToHead(Node $node)
+    {
+        $this->removeNode($node);
+        $this->addNode($node);
     }
 
     public function removeTail()
     {
-        $key = $this->tail->key;
-        $this->updateTail();
-        return $key;
+        $node = $this->tail->prev;
+        $this->removeNode($node);
+        return $node;
     }
 }
+
+/**
+ * Your LRUCache object will be instantiated and called as such:
+ * $obj = LRUCache($capacity);
+ * $ret_1 = $obj->get($key);
+ * $obj->put($key, $value);
+ */

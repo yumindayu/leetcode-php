@@ -18,13 +18,11 @@ class Solution
     begin [dot, log] -> dog + 1
     end[cog,dog,log]
 
-
-
      * @return Integer
      */
     public function ladderLength($beginWord, $endWord, $wordList)
     {
-        $wordsArray = array_flip($wordList); //避免php中in_array O(n)时间复杂度引起的超时
+        $wordsArray = array_flip($wordList);
         if (!isset($wordsArray[$endWord])) {
             return 0;
         }
@@ -37,7 +35,6 @@ class Solution
         $endArray[$endWord]     = 1;
         while (!empty($beginArray)) {
             if (count($beginArray) > count($endArray)) {
-                //每次遍历队列中数量少的单词
                 $tmp        = $beginArray;
                 $beginArray = $endArray;
                 $endArray   = $tmp;
@@ -45,7 +42,7 @@ class Solution
             $temp = [];
             foreach ($beginArray as $word => $value) {
                 for ($i = 0; $i < strlen($word); $i++) {
-                    for ($c = "a"; $c <= 'z'; $c++) {
+                    for ($c = 'a'; $c <= 'z'; $c++) {
                         $old      = $word[$i];
                         $word[$i] = $c;
                         if (isset($endArray[$word])) {
