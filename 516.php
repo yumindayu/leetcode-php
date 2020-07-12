@@ -9,7 +9,7 @@ class Solution
     public function longestPalindromeSubseq($s)
     {
         $len = strlen($s);
-        $dp  = [];
+        $dp  = array_fill(0, $len, array_fill(0, $len, 0));
         for ($i = 0; $i < $len; $i++) {
             $dp[$i][$i] = 1;
         }
@@ -25,3 +25,6 @@ class Solution
         return $dp[0][$len - 1];
     }
 }
+$test = new Solution;
+$s    = "bbbab";
+var_dump($test->longestPalindromeSubseq($s));
