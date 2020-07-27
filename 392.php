@@ -14,10 +14,8 @@ class Solution
         while ($i < strlen($s) && $j < strlen($t)) {
             if ($s[$i] == $t[$j]) {
                 $i++;
-                $j++;
-            } else {
-                $j++;
             }
+            $j++;
         }
         return $i == strlen($s);
     }

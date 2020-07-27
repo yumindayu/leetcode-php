@@ -1,11 +1,6 @@
 <?php
 class Solution
 {
-    public $visited = [];
-
-    public $rows;
-
-    public $cols;
     /**
      * @param Integer[][] $matrix
      * @return Integer
@@ -31,13 +26,18 @@ class Solution
         if ($this->visited[$index] != 0) {
             return $this->visited[$index];
         }
+
+        if ($i < 0 || $i >= $this->rows || $j < 0 || $j >= $this->cols) {
+            return 0;
+        }
+
         $this->visited[$index]++;
         // $this->visited[$i * count($matrix[0]) + $j]++;
         $direction = [[-1, 0], [0, -1], [1, 0], [0, 1]];
         foreach ($direction as $d) {
             $x = $i + $d[0];
             $y = $j + $d[1];
-            if ($x >= 0 && $x < count($matrix) && $y >= 0 && $y < count($matrix[0]) && $matrix[$x][$y] > $matrix[$i][$j]) {
+            if ($matrix[$x][$y] > $matrix[$i][$j]) {
                 $this->visited[$index] = max($this->visited[$index], $this->_dfs($matrix, $x, $y) + 1);
             }
         }
