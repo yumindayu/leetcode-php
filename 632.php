@@ -28,11 +28,11 @@ class Solution
         $count = count($nums);
         $index = array_fill(0, $count, 0);
 
-        $pq = new PQ(); //构建一个小顶堆，堆顶的元素最小，每次滑动窗口都从left往右滑动
+        $pq = new PQ(); //构建一个小顶堆的优先队列，堆顶的元素最小，每次滑动窗口都从left往右滑动
 
         for ($i = 0; $i < $count; $i++) {
-            $pq->insert($i, $nums[$i][0]);
-            $max = max($max, $nums[$i][0]); //此时已经最起码有了一个包含所有列表中一个元素的区间，接下来就是更新这个区间的长度
+            $pq->insert($i, $nums[$i][0]); //php的优先队列，第一个参数是我们需要的索引，第二个是比较值
+            $max = max($max, $nums[$i][0]); //此时已经最起码有了一个包含所有列表中一个元素的区间，max就是该段区间内的最大数 接下来就是更新这个区间的最大与最小数的差值，选一个最小的则为答案
         }
         // $pq->setExtractFlags(PQ::EXTR_BOTH);
 
