@@ -5,8 +5,6 @@ class Solution
 
     public $edges = []; //有向图
 
-    public $result = [];
-
     public $invalid = false;
     /**
      * @param Integer $numCourses
@@ -28,10 +26,7 @@ class Solution
             }
         }
 
-        if ($this->invalid) {
-            return [];
-        }
-        return empty($this->result) ? false : true;
+        return !$this->invalid;
     }
     public function dfs($u)
     {
@@ -49,6 +44,5 @@ class Solution
         }
 
         $this->visited[$u] = 2;
-        array_unshift($this->result, $u);
     }
 }
