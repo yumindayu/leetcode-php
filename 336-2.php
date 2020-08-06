@@ -53,8 +53,7 @@ class Solution
     }
 
     /**
-     * Returns if the word is in the trie.
-     * 正序构建字典树，所以要逆序查找
+     * Returns if the word is in the map.
      * @param String $word
      * @return Boolean
      */
