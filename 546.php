@@ -33,26 +33,28 @@ class Solution
         }
 
         $key = "$start-$end-$k";
-        //查询是否计算过当前段数据
-        if (!isset($this->memory[$key])) {
-            $len = $this->length[$end];
-            //总拿的段长
-            $k += $len;
-            //上一个不同数的末位置
-            $end -= $len;
-
-            //直接先拿最后一段
-            $value = $this->remove($boxes, $start, $end, 0) + $k * $k;
-
-            //最后一段最后拿
-            for ($i = $start; $i < $end; $i++) {
-                if ($boxes[$i] == $boxes[$end + 1] && $boxes[$i + 1] != $boxes[$end + 1]) {
-                    $value = max($value, $this->remove($boxes, $start, $i, $k) + $this->remove($boxes, $i + 1, $end, 0));
-                }
-            }
-
-            $this->memory[$key] = $value;
+        if (isset($this->memory[$key])) {
+            return $this->memory[$key];
         }
+
+        //查询是否计算过当前段数据
+        $len = $this->length[$end];
+        //总拿的段长
+        $k += $len;
+        //上一个不同数的末位置
+        $end -= $len;
+
+        //直接先拿最后一段
+        $value = $this->remove($boxes, $start, $end, 0) + $k * $k;
+
+        //最后一段最后拿
+        for ($i = $start; $i < $end; $i++) {
+            if ($boxes[$i] == $boxes[$end + 1] && $boxes[$i + 1] != $boxes[$end + 1]) {
+                $value = max($value, $this->remove($boxes, $start, $i, $k) + $this->remove($boxes, $i + 1, $end, 0));
+            }
+        }
+
+        $this->memory[$key] = $value;
 
         return $this->memory[$key];
     }
