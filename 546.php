@@ -33,11 +33,11 @@ class Solution
         }
 
         $key = "$start-$end-$k";
+        //查询是否计算过当前段数据
         if (isset($this->memory[$key])) {
             return $this->memory[$key];
         }
 
-        //查询是否计算过当前段数据
         $len = $this->length[$end];
         //总拿的段长
         $k += $len;
