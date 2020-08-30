@@ -3,41 +3,42 @@ class Solution
 {
 
     /**
-     * @param String $s
-     * @return String
+     * @desc 生成回文字符串
+     * @param $s
+     * @return string
      */
     public function shortestPalindrome($s)
     {
-        $max_right = -PHP_INT_MAX;
-        for ($i = 1; $i <= strlen($s); $i++) {
-            $ret = $this->isPalindrome(substr($s, 0, $i));
-            if ($ret) {
-                $max_right = max($max_right, $i);
+        $temp = '';
+        $len  = strlen($s);
+        if (!$this->palindrome($s)) {
+            for ($i = 0; $i < $len - 1; $i++) {
+                //每一次从尾部依次取一个下标字符串到前面
+                $temp = $temp . $s[$len - 1 - $i];
+                if ($this->palindrome($temp . $s)) {
+                    return $temp . $s;
+                }
             }
         }
-        if ($max_right == strlen($s)) {
-            return $s;
-        }
-
-        $max_right = $max_right == 0 ? 1 : $max_right;
-        $str       = substr($s, $max_right);
-        $new_str   = "";
-        for ($i = strlen($str) - 1; $i >= 0; $i--) {
-            $new_str .= $str[$i];
-        }
-        return $new_str . $s;
+        return $s;
     }
 
-    private function isPalindrome($s)
+    /**
+     * @param $string
+     * @return bool
+     * 简单暴力验证是否回文串超时,所以用一半一半直接判等比较
+     */
+    public function palindrome($string)
     {
-        $low  = 0;
-        $high = strlen($s) - 1;
-        while ($low <= $high) {
-            if ($s[$low] != $s[$high]) {
-                return false;
-            }
-            $low++;
-            $high--;
+        $len    = strlen($string);
+        $is_odd = ($len % 2 == 0) ? 0 : 1;
+        $midd   = $len / 2;
+        //从0位置开始，截取字符串前几位数字
+        $f_string = substr($string, 0, $midd);
+        //从上一个截取的结束位置起（奇数 + 1），截取字符串后几位数字，并反转字符串
+        $b_string = strrev(substr($string, $midd + $is_odd, $midd));
+        if ($f_string != $b_string) {
+            return false;
         }
         return true;
     }
