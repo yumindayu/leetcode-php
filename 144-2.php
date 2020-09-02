@@ -15,7 +15,7 @@ class Solution
      * @param TreeNode $root
      * @return Integer[]
      */
-    public function inorderTraversal($root)
+    public function preorderTraversal($root)
     {
         $list  = [];
         $stack = new SplStack;
@@ -23,11 +23,11 @@ class Solution
         $cur = $root;
         while ($cur != null || !$stack->isEmpty()) {
             while ($cur != null) {
+                array_push($list, $cur->val);
                 $stack->push($cur);
                 $cur = $cur->left;
             }
             $cur = $stack->pop();
-            array_push($list, $cur->val);
             $cur = $cur->right;
         }
         return $list;
