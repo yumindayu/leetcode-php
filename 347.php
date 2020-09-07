@@ -9,16 +9,9 @@ class Solution
      */
     public function topKFrequent($nums, $k)
     {
-        $record = [];
-        for ($i = 0; $i < count($nums); $i++) {
-            if (isset($record[$nums[$i]])) {
-                $record[$nums[$i]]++;
-            } else {
-                $record[$nums[$i]] = 1;
-            }
-        }
-        $pq = new PQ;
-        $i  = 0;
+        $record = array_count_values($nums);
+        $pq     = new PQ;
+        $i      = 0;
         foreach ($record as $key => $value) {
             if ($i >= $k) {
                 break;
