@@ -15,7 +15,7 @@ class Solution
     /**
      * @param TreeNode $root
      * @return Integer
-     * 0:表示节点没有被其他摄像头覆盖 1:节点已被其他摄像头覆盖 2: 节点没被覆盖，并且需要安装摄像头覆盖别的节点
+     * 0:表示节点待覆盖 1:节点已被覆盖 2: 节点已安装摄像头
      * 后序遍历
      */
     public function minCameraCover($root)
