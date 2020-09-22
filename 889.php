@@ -15,6 +15,12 @@ class Solution
      * @param Integer[] $pre
      * @param Integer[] $post
      * https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-postorder-traversal/solution/tu-jie-889-gen-ju-qian-xu-he-hou-xu-bian-li-gou-2/
+     *    用前序遍历的第一个元素创建出根节点
+     *    用前序遍历的第二个元素x，去后序遍历中找对应的下标y，将y+1就能得到左子树的个数了
+     *    将前序数组，后序数组拆分左右两部分
+     *    递归的处理前序数组左边、后序数组右边
+     *    递归的处理前序数组右边、后序数组右边
+     *    返回根节点
      * @return TreeNode
      */
     public function constructFromPrePost($pre, $post)
