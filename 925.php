@@ -12,7 +12,7 @@ class Solution
         $i     = 0; //name字符串的指针
         $index = 0; //typed字符串的指针
         while ($index < strlen($typed)) {
-            if ($name[$i] == $typed[$index]) {
+            if ($i < strlen($name) && $name[$i] == $typed[$index]) {
                 $i++;
                 $index++;
             } else {
