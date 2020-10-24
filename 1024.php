@@ -9,15 +9,9 @@ class Solution
      */
     public function videoStitching($clips, $T)
     {
-        $array = [];
+        $array = array_flip(0, $T, 0);
         foreach ($clips as $clip) {
-            $start = $clip[0];
-            $end   = $clip[1];
-            if (isset($array[$start])) {
-                $array[$start] = max($array[$start], $end);
-            } else {
-                $array[$start] = $end;
-            }
+            $array[$clip[0]] = max($array[$clip[0]], $clip[1]);
         }
         $num  = 0;
         $pre  = 0;
