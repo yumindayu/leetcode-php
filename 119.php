@@ -1,6 +1,4 @@
 <?php
-ini_set("display_errors", 1);
-error_reporting(E_ALL);
 class Solution
 {
 
@@ -28,8 +26,28 @@ class Solution
         }
         return $pre;
     }
-}
 
-$test = new Solution;
-$ret  = $test->getRow(33);
-var_dump($ret);
+    /**
+     * @param Integer $rowIndex
+     * @return Integer[]
+     */
+    public function getRow2($rowIndex)
+    {
+        $numRows = $rowIndex + 1;
+        $res     = [];
+        for ($i = 0; $i < $numRows; $i++) {
+            if ($i == 0) {
+                $res[$i] = [1];
+            } elseif ($i == 1) {
+                $res[$i] = [1, 1];
+            } else {
+                $res[$i][0] = 1;
+                for ($j = 1; $j < $i; $j++) {
+                    $res[$i][$j] = $res[$i - 1][$j - 1] + $res[$i - 1][$j];
+                }
+                $res[$i][$i] = 1;
+            }
+        }
+        return $res[$numRows - 1];
+    }
+}
