@@ -27,6 +27,7 @@ class Solution
         }
 
         $answer = [];
+        //曼哈顿距离最大为 R + C
         for ($k = 0; $k < $R + $C; ++$k) {
             if (isset($map[$k])) {
                 foreach ($map[$k] as $value) {
