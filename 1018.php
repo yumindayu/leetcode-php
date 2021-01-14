@@ -8,7 +8,8 @@ class Solution
      */
     public function prefixesDivBy5($A)
     {
-        $res = [];
+        $res    = [];
+        $prefix = 0;
         for ($i = 0; $i < count($A); $i++) {
             $prefix = (($prefix << 1) + $A[$i]) % 5;
             $res[]  = !$prefix;
