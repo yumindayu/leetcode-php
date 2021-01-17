@@ -56,8 +56,8 @@ class Solution
                 }
             }
         }
-        $res = array_fill(0, count($hits), 0);
-
+        $res    = array_fill(0, count($hits), 0);
+        $origin = $this->getSize($size);
         for ($i = count($hits) - 1; $i >= 0; $i--) {
             $x = $hits[$i][0];
             $y = $hits[$i][1];
@@ -65,7 +65,6 @@ class Solution
                 continue;
             }
             // 补回之前与屋顶相连的砖块数
-            $origin = $this->getSize($size);
             if ($x == 0) {
                 $this->union($y, $size);
             }
