@@ -23,6 +23,7 @@ class Solution
             $this->root[$i] = $i;
         }
         for ($i = 0; $i < $len; $i++) {
+            //转换坐标
             $x = floor($index[$i] / $count);
             $y = $index[$i] % $count;
             foreach ($this->direction as $direction) {
