@@ -9,6 +9,7 @@ class Solution
      */
     public function subarraysWithKDistinct($A, $K)
     {
+        //将题意恰好改为最多，则可以用双指针运算，于是最多包含K 减去 最多包含K - 1 的结果就为恰好K
         return $this->helper($A, $K) - $this->helper($A, $K - 1);
     }
 
