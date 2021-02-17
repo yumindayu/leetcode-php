@@ -16,11 +16,11 @@ class Solution
             return $nums;
         }
 
-        $ans = [];
+        $res = [];
         for ($i = 0; $i < $m * $n; $i++) {
-            $ans[$i / $c][$i % $c] = $nums[$i / $n][$i % $n];
+            $res[$i / $c][$i % $c] = $nums[$i / $n][$i % $n];
         }
-        return $ans;
+        return $res;
 
         // $m = count($nums);
         // $n = count($nums[0]);
