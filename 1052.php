@@ -10,7 +10,7 @@ class Solution
      */
     public function maxSatisfied($customers, $grumpy, $X)
     {
-        //找到滑动窗口里 1最多并且数额最大的连续空间
+        //先把本来是0的加上 然后将数值变为0，之后求X长度内滑动窗口的最大值
         for ($i = 0; $i < count($customers); $i++) {
             if ($grumpy[$i] == 0) {
                 $sum += $customers[$i];
